@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Boxicons -->
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+	<!-- My CSS -->
+	<link rel="stylesheet" href="admin.css">
+
+	<title>Admin Main Page</title>
+</head>
+<body>
+
+
+	<!-- SIDEBAR -->
+	<section id="sidebar">
+		<a href="#" class="brand"><h1 class="text">Med<span class="new_text">Track</span></h1></a>
+		<ul class="side-menu top">
+			<li class="active">
+				<a href="#">
+					<i class='bx bxs-dashboard' ></i>
+					<span class="text">Dashboard</span>
+				</a>
+			</li>
+			<li>
+				<a href="pending-approval.html">
+					<i class='bx bxs-shopping-bag-alt' ></i>
+					<span class="text">Pending Approval</span>
+				</a>
+			</li>
+			<li>
+				<a href="all-user-information.html">
+					<i class='bx bxs-doughnut-chart' ></i>
+					<span class="text">All User Information</span>
+				</a>
+			</li>
+			<li>
+				<a href="order-management.html">
+					<i class='bx bxs-message-dots' ></i>
+					<span class="text">Order Management</span>
+				</a>
+			</li>
+			<li>
+				<a href="inventory-management.html">
+					<i class='bx bxs-group' ></i>
+					<span class="text">Inventory Management</span>
+				</a>
+			</li>
+		</ul>
+		<ul class="side-menu">
+			<li>
+				<a href="#">
+					<i class='bx bxs-cog' ></i>
+					<span class="text">Settings</span>
+				</a>
+			</li>
+			<li>
+				<a href="#" id="logoutButton" class="logout">
+					<i class='bx bxs-log-out-circle' ></i>
+					<span class="text">Logout</span>
+				</a>
+			</li>
+		</ul>
+	</section>
+	<!-- SIDEBAR -->
+
+
+
+	<!-- CONTENT -->
+	<section id="content">
+		<!-- NAVBAR -->
+		<nav>
+			<i class='bx bx-menu' ></i>
+			<a href="#" class="nav-link">Categories</a>
+			<form action="#">
+				<div class="form-input">
+					<input type="search" placeholder="search hospitals/vendors">
+					<button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
+				</div>
+			</form>
+			<a href="6.6addadmin.html" class="nav-link">Add co-admin</a>
+			
+			<a href="#" class="notification">
+				<i class='bx bxs-bell' ></i>
+			</a>
+			<a href="#" class="profile">
+				<img src="png/logo-color.png">
+			</a>
+			
+		</nav>
+		<!-- NAVBAR -->
+
+		<!-- MAIN -->
+		<main>
+            <div class="head-title">
+				<div class="left">
+					<h1>Dashboard</h1>
+					<ul class="breadcrumb">
+						<li>
+							<a href="#">Dashboard</a>
+						</li>
+						<li><i class='bx bx-chevron-right' ></i></li>
+						<li>
+							<a class="active" href="#">Home</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+
+			<div class="summary mt-4">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="card">
+							<div class="card-body">
+								<h5 class="card-title">Total Active Orders: 22 <span id="totalIncome"></span> </h5>
+								
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="card">
+							<div class="card-body">
+								<h5 class="card-title">Orders confirmed Today: 17 <span id="totalExpense"></span> </h5>
+								
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="card">
+							<div class="card-body">
+								<h5 class="card-title">Orders Delivered Today: 13 <span id="totalBalance"></span> </h5>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<h2 class="mt-4" id="maintext">Weekly order Activity:</h2>
+
+			<div class="chart-container">
+				<!-- Chart.js canvas -->
+				<canvas id="lineChart"></canvas>
+			</div>
+
+			<h2 class="mt-4" id="maintext">Monthly Orders Count:</h2>
+
+			<div class="chart-container">
+                <!-- Chart.js canvas for Bar Chart -->
+                <canvas id="barChart"></canvas>
+            </div>
+
+
+        </main>
+		<!-- MAIN -->
+	</section>
+	<!-- CONTENT -->
+	
+
+	<script src="test.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+
+document.getElementById('logoutButton').addEventListener('click', function() {
+            // Clear JWT token from localStorage
+            localStorage.removeItem('authToken');
+            
+            // Redirect to the login page
+            window.location.href = '../home.html';
+        });
+
+
+
+
+
+    var ctx = document.getElementById('lineChart').getContext('2d');
+    var lineChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+            datasets: [
+                {
+                    label: 'Active Orders',
+                    data: [25, 20, 22, 0, 0, 0, 0],
+                    borderColor: 'green',
+                    backgroundColor: 'rgba(0, 128, 0, 0.2)',
+                    borderWidth: 2
+                },
+                {
+                    label: 'Delivered Orders',
+                    data: [15, 10, 17, 0, 0, 0, 0],
+                    borderColor: 'blue',
+                    backgroundColor: 'rgba(0, 0, 255, 0.2)',
+                    borderWidth: 2
+                },
+                {
+                    label: 'Received Orders (Not Confirmed)',
+                    data: [20, 17, 13, 0, 0, 0, 0],
+                    borderColor: 'red',
+                    backgroundColor: 'rgba(255, 0, 0, 0.2)',
+                    borderWidth: 2
+                }
+            ]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Count of Orders'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Days of the Week'
+                    }
+                }
+            }
+        }
+    });
+
+
+
+
+	var ctxBar = document.getElementById('barChart').getContext('2d');
+    var barChart = new Chart(ctxBar, {
+        type: 'bar',
+        data: {
+            labels: ['Orders by Hospital Admin', 'Orders by Normal User'],
+            datasets: [{
+                label: 'Total Orders',
+                data: [112, 36],
+                backgroundColor: ['rgba(54, 162, 235, 0.6)', 'rgba(255, 159, 64, 0.6)'],
+                borderColor: ['rgba(54, 162, 235, 1)', 'rgba(255, 159, 64, 1)'],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Order Count'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Order Categories'
+                    }
+                }
+            }
+        }
+    });
+
+
+
+
+
+const allSideMenu = document.querySelectorAll('#sidebar .side-menu.top li a');
+
+allSideMenu.forEach(item=> {
+	const li = item.parentElement;
+
+	item.addEventListener('click', function () {
+		allSideMenu.forEach(i=> {
+			i.parentElement.classList.remove('active');
+		})
+		li.classList.add('active');
+	})
+});
+
+
+
+
+// TOGGLE SIDEBAR
+const menuBar = document.querySelector('#content nav .bx.bx-menu');
+const sidebar = document.getElementById('sidebar');
+
+menuBar.addEventListener('click', function () {
+	sidebar.classList.toggle('hide');
+})
+
+</script>
+
+
+
+</body>
+</html>

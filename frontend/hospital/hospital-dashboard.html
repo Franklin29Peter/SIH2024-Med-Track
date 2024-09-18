@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+	<link rel="stylesheet" href="hospital.css">
+
+	<title>Hospital-Admin Main Page</title>
+</head>
+<body>
+
+
+	<section id="sidebar">
+		<a href="#" class="brand"><h1 class="text">Med<span class="new_text">Track</span></h1></a>
+		<ul class="side-menu top">
+			<li class="active">
+				<a href="#">
+					<i class='bx bxs-dashboard' ></i>
+					<span class="text">Dashboard</span>
+				</a>
+			</li>
+			<li>
+				<a href="inventory-management.html" id="inventory-management">
+					<i class='bx bxs-shopping-bag-alt' ></i>
+					<span class="text">Inventory Management</span>
+				</a>
+			</li>
+			<li>
+				<a href="vendor-management.html" id="vendor-management">
+					<i class='bx bxs-doughnut-chart' ></i>
+					<span class="text">Vendor Management</span>
+				</a>
+			</li>
+			<li>
+				<a href="order-management.html" >
+					<i class='bx bxs-message-dots' id="order-management"></i>
+					<span class="text">Order Management</span>
+				</a>
+			</li>
+			<li>
+				<a href="patient-record-entry.html">
+					<i class='bx bxs-group' id="patient-record-entry"></i>
+					<span class="text">Patient Records</span>
+				</a>
+			</li>
+		</ul>
+		<ul class="side-menu">
+			<li>
+				<a href="#">
+					<i class='bx bxs-cog' ></i>
+					<span class="text">Settings</span>
+				</a>
+			</li>
+			<li>
+				<a href="#" id="logoutButton" class="logout">
+					<i class='bx bxs-log-out-circle' ></i>
+					<span class="text">Logout</span>
+				</a>
+			</li>
+		</ul>
+	</section>
+
+
+
+	<section id="content">
+
+		<nav>
+			<i class='bx bx-menu' ></i>
+			<a href="#" class="nav-link">Filter vendors</a>
+			<form action="#">
+				<div class="form-input">
+					<input type="search" placeholder="search vendors by name/location">
+					<button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
+				</div>
+			</form>
+			<a href="6.6addadmin.html" class="nav-link">Add staff</a>
+			
+			<a href="#" class="notification">
+				<i class='bx bxs-bell' ></i>
+			</a>
+			<a href="#" class="profile">
+				<img src="png/logo-color.png">
+			</a>
+			
+		</nav>
+
+
+		<main>
+            <div class="head-title">
+				<div class="left">
+					<h1>Dashboard</h1>
+					<ul class="breadcrumb">
+						<li>
+							<a href="#">Dashboard</a>
+						</li>
+						<li><i class='bx bx-chevron-right' ></i></li>
+						<li>
+							<a class="active" href="#">Home</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+
+			<div class="summary mt-4">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="card">
+							<div class="card-body">
+								<h5 class="card-title">Total Active Orders: 4 <span id="totalIncome"></span> </h5>
+								
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="card">
+							<div class="card-body">
+								<h5 class="card-title">Orders confirmed Today: 1 <span id="totalExpense"></span> </h5>
+								
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="card">
+							<div class="card-body">
+								<h5 class="card-title">Orders Delivered Today: 1 <span id="totalBalance"></span> </h5>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<h2 class="mt-4" id="maintext">Mean Consumption Patterns</h2>
+
+			<div class="chart-container">
+
+				<canvas id="lineChart"></canvas>
+			</div>
+
+			<h2 class="mt-4" id="maintext">Monthly Orders Count:</h2>
+
+			<div class="chart-container">
+
+                <canvas id="barChart"></canvas>
+            </div>
+
+
+        </main>
+
+	</section>
+
+	
+
+	<script src="test.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+
+document.getElementById('logoutButton').addEventListener('click', function() {
+
+            localStorage.removeItem('authToken');
+
+            window.location.href = '../home.html';
+        });
+
+
+    var ctx = document.getElementById('lineChart').getContext('2d');
+    var lineChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Antibiotics', 'Analgesics', 'Antipyretics', 'Antihypertensives', 'Antidepressants', 'Antidiabetics', 'Others'],
+            datasets: [
+                {
+                    label: 'Mean Conumption This week',
+                    data: [3, 2.7, 2.2, 1.5, 1, 3, 2.1],
+                    borderColor: 'green',
+                    backgroundColor: 'rgba(0, 128, 0, 0.2)',
+                    borderWidth: 2
+                },
+                {
+                    label: 'Mean Conumption This Month',
+                    data: [3.7, 2.9, 1.1, 3.75, 2, 1, 2.6],
+                    borderColor: 'blue',
+                    backgroundColor: 'rgba(0, 0, 255, 0.2)',
+                    borderWidth: 2
+                },
+                {
+                    label: 'Mean Conumption This Year',
+                    data: [3.2, 1.2, 2.8, 0.8, 3, 2.6, 1.2],
+                    borderColor: 'red',
+                    backgroundColor: 'rgba(255, 0, 0, 0.2)',
+                    borderWidth: 2
+                }
+            ]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Main Types of Drugs'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Stips consumed'
+                    }
+                }
+            }
+        }
+    });
+
+
+	var ctxBar = document.getElementById('barChart').getContext('2d');
+    var barChart = new Chart(ctxBar, {
+        type: 'bar',
+        data: {
+            labels: ['Orders on Antibiotics', 'Orders on others'],
+            datasets: [{
+                label: 'Total Orders',
+                data: [13, 36],
+                backgroundColor: ['rgba(54, 162, 235, 0.6)', 'rgba(255, 159, 64, 0.6)'],
+                borderColor: ['rgba(54, 162, 235, 1)', 'rgba(255, 159, 64, 1)'],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Order Count'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: '----'
+                    }
+                }
+            }
+        }
+    });
+
+
+    const allSideMenu = document.querySelectorAll('#sidebar .side-menu.top li a');
+
+allSideMenu.forEach(item=> {
+	const li = item.parentElement;
+
+	item.addEventListener('click', function () {
+		allSideMenu.forEach(i=> {
+			i.parentElement.classList.remove('active');
+		})
+		li.classList.add('active');
+	})
+});
+
+
+const menuBar = document.querySelector('#content nav .bx.bx-menu');
+const sidebar = document.getElementById('sidebar');
+
+menuBar.addEventListener('click', function () {
+	sidebar.classList.toggle('hide');
+})
+</script>
+
+
+
+</body>
+</html>

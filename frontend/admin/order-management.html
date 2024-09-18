@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Boxicons -->
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+	<!-- My CSS -->
+	<link rel="stylesheet" href="admin.css">
+
+	<title>Admin Pending Approval Page</title>
+    <style>
+        .container {
+            display: flex;
+        }
+        .info-list {
+            margin-top: 20px;
+        }
+        .info-item {
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            background-color: #f9f9f9;
+        }
+        .info-item .details {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+
+
+	<!-- SIDEBAR -->
+	<section id="sidebar">
+		<a href="#" class="brand"><h1 class="text">Med<span class="new_text">Track</span></h1></a>
+		<ul class="side-menu top">
+			<li >
+				<a href="admin-dashboard.html">
+					<i class='bx bxs-dashboard' ></i>
+					<span class="text">Dashboard</span>
+				</a>
+			</li>
+			<li >
+				<a href="pending-approval.html">
+					<i class='bx bxs-shopping-bag-alt' ></i>
+					<span class="text">Pending Approval</span>
+				</a>
+			</li>
+			<li >
+				<a href="all-user-information.html">
+					<i class='bx bxs-doughnut-chart' ></i>
+					<span class="text">All User Information</span>
+				</a>
+			</li>
+			<li class="active">
+				<a href="#">
+					<i class='bx bxs-message-dots' ></i>
+					<span class="text">Order Management</span>
+				</a>
+			</li>
+			<li>
+				<a href="inventory-management.html">
+					<i class='bx bxs-group' ></i>
+					<span class="text">Inventory Management</span>
+				</a>
+			</li>
+		</ul>
+		<ul class="side-menu">
+			<li>
+				<a href="#">
+					<i class='bx bxs-cog' ></i>
+					<span class="text">Settings</span>
+				</a>
+			</li>
+			<li>
+				<a href="#" id="logoutButton" class="logout">
+					<i class='bx bxs-log-out-circle' ></i>
+					<span class="text">Logout</span>
+				</a>
+			</li>
+		</ul>
+	</section>
+	<!-- SIDEBAR -->
+
+
+
+	<!-- CONTENT -->
+	<section id="content">
+		<!-- NAVBAR -->
+		<nav>
+			<i class='bx bx-menu' ></i>
+			<a href="#" class="nav-link">Categories</a>
+			<form action="#">
+				<div class="form-input">
+					<input type="search" placeholder="search hospitals/vendors">
+					<button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
+				</div>
+			</form>
+			<a href="6.6addadmin.html" class="nav-link">Add co-admin</a>
+			
+			<a href="#" class="notification">
+				<i class='bx bxs-bell' ></i>
+			</a>
+			<a href="#" class="profile">
+				<img src="png/logo-color.png">
+			</a>
+			
+		</nav>
+		<!-- NAVBAR -->
+
+		<!-- MAIN -->
+		<main>
+            <div class="head-title">
+				<div class="left">
+					<h1>Active Orders In System</h1>
+					<ul class="breadcrumb">
+						<li>
+							<a href="#">Dashboard</a>
+						</li>
+						<li><i class='bx bx-chevron-right' ></i></li>
+						<li>
+							<a class="active" href="#">Order Management</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+
+			    <!-- Main Content -->
+                <!-- Information Display Section -->
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">order id</th>
+                        <th scope="col">Hospital Name</th>
+                        <th scope="col">Vendor Name</th>
+                        <th scope="col">Drug Name</th>
+                        <th scope="col">Quantity(Strips)</th>
+                        <th scope="col">Cost as per Vendor</th>
+                        <th scope="col">Delivery Partner</th>
+                        <th scope="col">Order Received Date</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">4</th>
+                        
+                        <td>Apollo</td>
+                        <td>Alkem Laboratories</td>
+                        <td>Taxim-O</td>
+                        <td>50</td>
+                        <td>9000</td>
+                        <td>Partner 1 Logistics</td>
+                        <td>3/09/2024</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">7</th>
+                        
+                        <td>SevenHills</td>
+                        <td>Cipla</td>
+                        <td>CIplox</td>
+                        <td>250</td>
+                        <td>12500</td>
+                        <td>Partner 2 Logistics</td>
+                        <td>3/09/2024</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">9</th>
+                        
+                        <td>Care</td>
+                        <td>Mankind Pharma</td>
+                        <td>Prega news</td>
+                        <td>20</td>
+                        <td>1000</td>
+                        <td>Partner 3 Logistics</td>
+                        <td>3/09/2024</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">13</th>
+                        
+                        <td>Apollo</td>
+                        <td>Alkem Laboratories</td>
+                        <td>Clavam</td>
+                        <td>50</td>
+                        <td>4000</td>
+                        <td>Partner 1 Logistics</td>
+                        <td>3/09/2024</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">14</th>
+                        
+                        <td>MediCover</td>
+                        <td>MedLife</td>
+                        <td>LivEasy MultiVitamin(Bottle of 30 tablets)</td>
+                        <td>20</td>
+                        <td>4000</td>
+                        <td>Partner 4 Logistics</td>
+                        <td>3/09/2024</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">17</th>
+                        
+                        <td>NRI</td>
+                        <td>Medplus</td>
+                        <td>DOLO 650</td>
+                        <td>300</td>
+                        <td>9000</td>
+                        <td>Partner 5 Logistics</td>
+                        <td>3/09/2024</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">19</th>
+                        
+                        <td>NRI</td>
+                        <td>Alkem Laboratories</td>
+                        <td>Taxim-O</td>
+                        <td>25</td>
+                        <td>4500</td>
+                        <td>Partner 1 Logistics</td>
+                        <td>3/09/2024</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">20</th>
+                        
+                        <td>Apollo</td>
+                        <td>Mankind Pharma</td>
+                        <td>Prega news</td>
+                        <td>20</td>
+                        <td>1000</td>
+                        <td>Partner 1 Logistics</td>
+                        <td>3/09/2024</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">21</th>
+                        
+                        <td>NRI</td>
+                        <td>Medplus</td>
+                        <td>Livogen</td>
+                        <td>550</td>
+                        <td>16500</td>
+                        <td>Partner 5 Logistics</td>
+                        <td>3/09/2024</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">23</th>
+                        
+                        <td>Apollo</td>
+                        <td>Alkem Laboratories</td>
+                        <td>Taxim-O</td>
+                        <td>50</td>
+                        <td>9000</td>
+                        <td>Partner 1 Logistics</td>
+                        <td>3/09/2024</td>
+                      </tr>
+                      
+                    </tbody>
+                  </table>
+            
+
+
+        </main>
+		<!-- MAIN -->
+	</section>
+	<!-- CONTENT -->
+	
+
+	<!-- <script src="test.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+
+
+
+
+
+
+
+
+
+document.getElementById('logoutButton').addEventListener('click', function() {
+            // Clear JWT token from localStorage
+            localStorage.removeItem('authToken');
+            
+            // Redirect to the login page
+            window.location.href = '../home.html';
+        });
+
+
+
+const allSideMenu = document.querySelectorAll('#sidebar .side-menu.top li a');
+
+allSideMenu.forEach(item=> {
+	const li = item.parentElement;
+
+	item.addEventListener('click', function () {
+		allSideMenu.forEach(i=> {
+			i.parentElement.classList.remove('active');
+		})
+		li.classList.add('active');
+	})
+});
+
+
+
+
+// TOGGLE SIDEBAR
+const menuBar = document.querySelector('#content nav .bx.bx-menu');
+const sidebar = document.getElementById('sidebar');
+
+menuBar.addEventListener('click', function () {
+	sidebar.classList.toggle('hide');
+})
+
+</script>
+
+
+
+</body>
+</html>

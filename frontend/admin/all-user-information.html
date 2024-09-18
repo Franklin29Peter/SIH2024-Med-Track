@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Boxicons -->
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+	<!-- My CSS -->
+	<link rel="stylesheet" href="admin.css">
+
+	<title>Admin Pending Approval Page</title>
+    <style>
+        .container {
+            display: flex;
+        }
+        .info-list {
+            margin-top: 20px;
+        }
+        .info-item {
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            background-color: #f9f9f9;
+        }
+        .info-item .details {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+
+
+	<!-- SIDEBAR -->
+	<section id="sidebar">
+		<a href="#" class="brand"><h1 class="text">Med<span class="new_text">Track</span></h1></a>
+		<ul class="side-menu top">
+			<li >
+				<a href="admin-dashboard.html">
+					<i class='bx bxs-dashboard' ></i>
+					<span class="text">Dashboard</span>
+				</a>
+			</li>
+			<li >
+				<a href="pending-approval.html">
+					<i class='bx bxs-shopping-bag-alt' ></i>
+					<span class="text">Pending Approval</span>
+				</a>
+			</li>
+			<li class="active">
+				<a href="#">
+					<i class='bx bxs-doughnut-chart' ></i>
+					<span class="text">All User Information</span>
+				</a>
+			</li>
+			<li>
+				<a href="order-management.html">
+					<i class='bx bxs-message-dots' ></i>
+					<span class="text">Order Management</span>
+				</a>
+			</li>
+			<li>
+				<a href="inventory-management.html">
+					<i class='bx bxs-group' ></i>
+					<span class="text">Inventory Management</span>
+				</a>
+			</li>
+		</ul>
+		<ul class="side-menu">
+			<li>
+				<a href="#">
+					<i class='bx bxs-cog' ></i>
+					<span class="text">Settings</span>
+				</a>
+			</li>
+			<li>
+				<a href="#" id="logoutButton" class="logout">
+					<i class='bx bxs-log-out-circle' ></i>
+					<span class="text">Logout</span>
+				</a>
+			</li>
+		</ul>
+	</section>
+	<!-- SIDEBAR -->
+
+
+
+	<!-- CONTENT -->
+	<section id="content">
+		<!-- NAVBAR -->
+		<nav>
+			<i class='bx bx-menu' ></i>
+			<a href="#" class="nav-link">Categories</a>
+			<form action="#">
+				<div class="form-input">
+					<input type="search" placeholder="search hospitals/vendors">
+					<button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
+				</div>
+			</form>
+			<a href="6.6addadmin.html" class="nav-link">Add co-admin</a>
+			
+			<a href="#" class="notification">
+				<i class='bx bxs-bell' ></i>
+			</a>
+			<a href="#" class="profile">
+				<img src="png/logo-color.png">
+			</a>
+			
+		</nav>
+		<!-- NAVBAR -->
+
+		<!-- MAIN -->
+		<main>
+            <div class="head-title">
+				<div class="left">
+					<h1>User's Info</h1>
+					<ul class="breadcrumb">
+						<li>
+							<a href="#">Dashboard</a>
+						</li>
+						<li><i class='bx bx-chevron-right' ></i></li>
+						<li>
+							<a class="active" href="#">All User Information</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+
+			    <!-- Main Content -->
+                <!-- Information Display Section -->
+    <div class="container mt-4">
+        <div class="row">
+            <!-- Hospitals Information -->
+            <div class="col-md-12">
+                <div class="header bg-white text-black p-3">
+                    Hospitals/Institutions:
+                </div>
+                <div class="body info-list" id="hospital-info-list">
+                    <!-- Dynamic hospital information will be inserted here -->
+                </div>
+            </div>
+
+            <!-- Vendors Information -->
+            <div class="col-md-12">
+                <div class="header bg-white text-black p-3">
+                    Vendors:
+                </div>
+                <div class="body info-list" id="vendor-info-list">
+                    <!-- Dynamic vendor information will be inserted here -->
+                </div>
+            </div>
+
+            <!-- Normal Users Information -->
+            <div class="col-md-12">
+                <div class="header bg-white text-black p-3">
+                    Normal Users:
+                </div>
+                <div class="body info-list" id="user-info-list">
+                    <!-- Dynamic normal user information will be inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
+            
+
+
+        </main>
+		<!-- MAIN -->
+	</section>
+	<!-- CONTENT -->
+	
+
+	<!-- <script src="test.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+
+document.addEventListener("DOMContentLoaded", function() {
+            // Fetch approved hospitals
+            fetch('http://localhost:5000/api/admin/hospitals/approved')
+                .then(response => response.json())
+                .then(data => {
+                    const hospitalList = document.getElementById('hospital-info-list');
+                    if (Array.isArray(data.approvedHospitals)) {
+                        data.approvedHospitals.forEach(hospital => {
+                            const item = document.createElement('div');
+                            item.className = 'info-item';
+                            item.innerHTML = `
+                                <div class="details">
+                                    <span><strong>Hospital Name:</strong> ${hospital.hospitalName || 'N/A'}</span>
+                                    <span><strong>Location:</strong> ${hospital.location || 'N/A'}</span>
+                                </div>
+                            `;
+                            hospitalList.appendChild(item);
+                        });
+                    } else {
+                        hospitalList.innerHTML = '<p>No approved hospitals found.</p>';
+                    }
+                });
+
+            // Fetch approved vendors
+            fetch('http://localhost:5000/api/admin/vendors/approved')
+                .then(response => response.json())
+                .then(data => {
+                    const vendorList = document.getElementById('vendor-info-list');
+                    if (Array.isArray(data.approvedVendors)) {
+                        data.approvedVendors.forEach(vendor => {
+                            const item = document.createElement('div');
+                            item.className = 'info-item';
+                            item.innerHTML = `
+                                <div class="details">
+                                    <span><strong>Vendor Company:</strong> ${vendor.vendorName || 'N/A'}</span>
+                                    <span><strong>Location:</strong> ${vendor.location || 'N/A'}</span>
+                                </div>
+                            `;
+                            vendorList.appendChild(item);
+                        });
+                    } else {
+                        vendorList.innerHTML = '<p>No approved vendors found.</p>';
+                    }
+                });
+
+                fetch('http://localhost:5000/api/admin/normal-users')
+    .then(response => response.json())
+    .then(data => {
+        console.log(data); // Check what data you're getting
+        const userList = document.getElementById('user-info-list');
+        if (Array.isArray(data.normalUsers)) {
+            data.normalUsers.forEach(user => {
+                const item = document.createElement('div');
+                item.className = 'info-item';
+                item.innerHTML = `
+                    <div class="details">
+                        <span><strong>Full Name:</strong> ${user.fullName || 'N/A'}</span>
+                        <span><strong>Address:</strong> ${user.address || 'N/A'}</span>
+                    </div>
+                `;
+                userList.appendChild(item);
+            });
+        } else {
+            userList.innerHTML = '<p>No users found.</p>';
+        }
+    });
+        });
+
+
+
+
+
+
+
+document.getElementById('logoutButton').addEventListener('click', function() {
+            // Clear JWT token from localStorage
+            localStorage.removeItem('authToken');
+            
+            // Redirect to the login page
+            window.location.href = '../home.html';
+        });
+
+
+
+const allSideMenu = document.querySelectorAll('#sidebar .side-menu.top li a');
+
+allSideMenu.forEach(item=> {
+	const li = item.parentElement;
+
+	item.addEventListener('click', function () {
+		allSideMenu.forEach(i=> {
+			i.parentElement.classList.remove('active');
+		})
+		li.classList.add('active');
+	})
+});
+
+
+
+
+// TOGGLE SIDEBAR
+const menuBar = document.querySelector('#content nav .bx.bx-menu');
+const sidebar = document.getElementById('sidebar');
+
+menuBar.addEventListener('click', function () {
+	sidebar.classList.toggle('hide');
+})
+
+</script>
+
+
+
+</body>
+</html>

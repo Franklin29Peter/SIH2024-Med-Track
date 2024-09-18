@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+	<link rel="stylesheet" href="hospital.css">
+    <style>
+        .vendor-list {
+            margin-top: 20px;
+        }
+        .vendor-item {
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            background-color: #f9f9f9;
+        }
+        .vendor-item .details {
+            display: flex;
+            justify-content: space-between;
+        }
+        .vendor-item .actions {
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .view-stock-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .view-stock-btn:hover {
+            background-color: #0056b3;
+        }
+        .order-deal-btn {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .order-deal-btn:hover {
+            background-color: #218838;
+        }
+        .approval-list-hopital {
+            margin-top: 20px;
+        }
+        .approval-list-vendor {
+            margin-top: 20px;
+        }
+        .approval-item {
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            background-color: #f9f9f9;
+        }
+        .approval-item .details {
+            display: flex;
+            justify-content: space-between;
+        }
+        .approval-item .actions {
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .reject-btn {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .reject-btn:hover {
+            background-color: darkred;
+        }
+        .approve-btn {
+            background-color: green;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .approve-btn:hover {
+            background-color: darkgreen;
+        }
+    </style>
+
+	<title>Hospital-Admin Order management Page</title>
+</head>
+<body>
+
+	<section id="sidebar">
+		<a href="#" class="brand"><h1 class="text">Med<span class="new_text">Track</span></h1></a>
+		<ul class="side-menu top">
+			<li >
+				<a href="hospital-dashboard.html">
+					<i class='bx bxs-dashboard' ></i>
+					<span class="text">Dashboard</span>
+				</a>
+			</li >
+			<li >
+				<a href="inventory-management.html" id="inventory-management">
+					<i class='bx bxs-shopping-bag-alt' ></i>
+					<span class="text">Inventory Management</span>
+				</a>
+			</li>
+			<li >
+				<a href="vendor-management.html" id="vendor-management">
+					<i class='bx bxs-doughnut-chart' ></i>
+					<span class="text">Vendor Management</span>
+				</a>
+			</li>
+			<li class="active">
+				<a href="#" >
+					<i class='bx bxs-message-dots' id="order-management"></i>
+					<span class="text">Order Management</span>
+				</a>
+			</li>
+			<li>
+				<a href="patient-record-entry.html">
+					<i class='bx bxs-group' id="patient-record-entry"></i>
+					<span class="text">Patient Record Entry</span>
+				</a>
+			</li>
+		</ul>
+		<ul class="side-menu">
+			<li>
+				<a href="#">
+					<i class='bx bxs-cog' ></i>
+					<span class="text">Settings</span>
+				</a>
+			</li>
+			<li>
+				<a href="#" id="logoutButton" class="logout">
+					<i class='bx bxs-log-out-circle' ></i>
+					<span class="text">Logout</span>
+				</a>
+			</li>
+		</ul>
+	</section>
+
+
+	<section id="content">
+
+		<nav>
+			<i class='bx bx-menu' ></i>
+			<a href="#" class="nav-link">Categories</a>
+			<form action="#">
+				<div class="form-input">
+					<input type="search" placeholder="search your orders by id">
+					<button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
+				</div>
+			</form>
+			<a href="6.6addadmin.html" class="nav-link">Add staff</a>
+			
+			<a href="#" class="notification">
+				<i class='bx bxs-bell' ></i>
+			</a>
+			<a href="#" class="profile">
+				<img src="png/logo-color.png">
+			</a>
+			
+		</nav>
+
+		<main>
+            <div class="head-title">
+				<div class="left">
+					<h1>Your Active Orders!</h1>
+					<ul class="breadcrumb">
+						<li>
+							<a href="#">Dashboard</a>
+						</li>
+						<li><i class='bx bx-chevron-right' ></i></li>
+						<li>
+							<a class="active" href="#">Order Management</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+            <div class="col-md-8">
+                
+                <div class="body approval-list-vendor" id="approval-list-vendor">
+                    <!-- Dynamic hospital details will be inserted here -->
+                    <div class="details">
+                        <span><strong>Order Id:</strong>4</span>
+                        <span><strong>Vendor Name:</strong> Alkem Laboratories</span>
+                    </div>
+                    <div class="actions">
+                        <button class="approve-btn" >Track</button>
+                        <button class="approve-btn" >Order Details</button>
+                    </div>
+
+
+                    <div class="details">
+                        <span><strong>Order Id:</strong>13</span>
+                        <span><strong>Vendor Name:</strong> Alkem Laboratories</span>
+                    </div>
+                    <div class="actions">
+                        <button class="approve-btn" >Track</button>
+                        <button class="approve-btn" >Order Details</button>
+                    </div>
+
+
+                    <div class="details">
+                        <span><strong>Order Id:</strong>20</span>
+                        <span><strong>Vendor Name:</strong> Prega news</span>
+                    </div>
+                    <div class="actions">
+                        <button class="approve-btn" >Track</button>
+                        <button class="approve-btn" >Order Details</button>
+                    </div>
+
+
+                    <div class="details">
+                        <span><strong>Order Id:</strong>23</span>
+                        <span><strong>Vendor Name:</strong> Alkem Laboratories</span>
+                    </div>
+                    <div class="actions">
+                        <button class="approve-btn" >Track</button>
+                        <button class="approve-btn" >Order Details</button>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+			
+
+        </main>
+
+	</section>
+
+
+	<script src="test.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+            document.addEventListener("DOMContentLoaded", function() {
+            // Fetch approved vendors
+            fetch('http://localhost:5000/api/admin/vendors/approved')
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Fetched data:', data); // Log the fetched data
+
+                    const vendorList = document.getElementById('vendor-list');
+
+                    // Check if the response contains the expected array
+                    if (data.success && Array.isArray(data.approvedVendors)) {
+                        // Loop through the approvedVendors array
+                        data.approvedVendors.forEach(vendor => {
+                            const item = document.createElement('div');
+                            item.className = 'vendor-item';
+
+                            item.innerHTML = `
+                                <div class="details">
+                                    <span><strong>Vendor Name:</strong> ${vendor.vendorName || 'N/A'}</span>
+                                    <span><strong>Location:</strong> ${vendor.location || 'N/A'}</span>
+                                </div>
+                                <div class="actions">
+                                    <button class="view-stock-btn" onclick="viewStock('${vendor.vendorId}')">View Stock</button>
+                                    <button class="order-deal-btn" onclick="orderDeal('${vendor.vendorId}')">Order/Deal</button>
+                                </div>
+                            `;
+
+                            vendorList.appendChild(item);
+                        });
+                    } else {
+                        vendorList.innerHTML = '<p>Error loading approved vendors. Please try again later.</p>';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching approved vendors:', error);
+                    const vendorList = document.getElementById('vendor-list');
+                    vendorList.innerHTML = '<p>Error loading approved vendors. Please try again later.</p>';
+                });
+        });
+
+        function viewStock(vendorId) {
+            if (!vendorId) {
+                alert('Error: Vendor ID is missing.');
+                return;
+            }
+
+            window.location.href = `/view-stock.html?vendorId=${vendorId}`;
+        }
+
+        function orderDeal(vendorId) {
+            if (!vendorId) {
+                alert('Error: Vendor ID is missing.');
+                return;
+            }
+
+            window.location.href = `/order-deal.html?vendorId=${vendorId}`;
+        }
+
+
+document.getElementById('logoutButton').addEventListener('click', function() {
+            localStorage.removeItem('authToken');
+            
+
+            window.location.href = '../home.html';
+        });
+
+        const allSideMenu = document.querySelectorAll('#sidebar .side-menu.top li a');
+
+allSideMenu.forEach(item=> {
+	const li = item.parentElement;
+
+	item.addEventListener('click', function () {
+		allSideMenu.forEach(i=> {
+			i.parentElement.classList.remove('active');
+		})
+		li.classList.add('active');
+	})
+});
+
+
+const menuBar = document.querySelector('#content nav .bx.bx-menu');
+const sidebar = document.getElementById('sidebar');
+
+menuBar.addEventListener('click', function () {
+	sidebar.classList.toggle('hide');
+})
+</script>
+
+
+
+</body>
+</html>

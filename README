@@ -1,0 +1,28 @@
+# Drug Inventory and Supply Chain Tracking System - Backend
+
+## Overview
+This is the backend part of the Drug Inventory and Supply Chain Tracking System. It is designed to handle the server-side logic, manage database operations, and provide an API for the frontend to interact with.
+
+## Prerequisites
+- [Node.js](https://nodejs.org/) (v14 or later recommended)
+- [npm](https://www.npmjs.com/) (comes with Node.js)
+
+## Setup
+
+1. **Clone the Repository**
+   ```bash
+   git clone <repository-url>
+   cd backend
+
+2. **Install dependencies**
+   npm install
+
+3. **Configure Environment Variables**
+   DB_HOST=localhost
+   DB_USER=root
+   DB_PASSWORD=password
+   DB_NAME=drug_inventory
+   PORT=3000
+
+4. **Run the Application**
+   node app.js
